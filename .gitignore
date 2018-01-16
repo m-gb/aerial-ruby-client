@@ -1,0 +1,12 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+# Ignore gem binaries
+*.gem
+# Ignore Gemfile.lock
+Gemfile.lock
