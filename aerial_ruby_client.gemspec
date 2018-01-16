@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors               = ["m-gb"]
   spec.email                 = ["maya.goldberg90@gmail.com"]
 
-  spec.summary               = "Aerial Apple TV screensaver downloader"
-  spec.description           = "A simple gem that downloads the Aerial Apple TV screensavers and saves them to a given directory."
+  spec.summary               = "Aerial Apple TV video downloader"
+  spec.description           = "A simple gem that downloads the Aerial Apple TV videos and saves them to a given directory."
   spec.homepage              = "http://rubygems.org/gems/aerial_ruby_client"
   spec.license               = "MIT"
 
