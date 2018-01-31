@@ -10,3 +10,5 @@
 *.gem
 # Ignore Gemfile.lock
 Gemfile.lock
+# Ignore vscode files
+.vscode

@@ -6,7 +6,7 @@ require 'open-uri'
 
 def download_aerials(foldername)
   aerialdir = File.join(Dir.home, foldername) 
-  #=> /root/Aerial or C:/Users/root/Aerial depending on the platform.
+  #=> /home/username/Aerial or C:\Users\username\Aerial depending on the platform.
 
   Dir.mkdir(aerialdir) unless Dir.exists?(aerialdir)
 
@@ -15,24 +15,22 @@ def download_aerials(foldername)
 
   response = HTTParty.get(url)
   parsed = JSON.parse(response)
-  urls = []
   parsed.each do |item|
     item['assets'].each do |asset|
-      urls << asset['url']
-    end
-  end
-
-  urls.each do |url|
-    filename = url.split('/').last
-    filepath = File.join(aerialdir, filename)
-    if File.exists?(filepath)
-      puts "File #{filename} already exists, skipping..."
-    else
-      open(url) do |u|
-        puts "Downloading #{url} to #{filepath}"
-        File.open(filepath, 'wb') { |f| f.write(u.read) }
+      filename = asset['timeOfDay'] + '-' + asset['id']
+      filepath = File.join(aerialdir, filename)
+      if File.exists?(filepath)
+        puts "File #{filename} already exists, skipping..."
+      else
+        puts "Downloading #{filename} to #{aerialdir}"
+        open(asset['url']) do |u|
+          File.open(filepath, 'wb') { |f| f.write(u.read) }
+        end
       end
     end
   end
+
   puts 'Finished processing all URLs!'
 end
+
+download_aerials('Aerial')
