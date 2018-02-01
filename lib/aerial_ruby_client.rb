@@ -5,7 +5,7 @@ require 'json'
 require 'open-uri'
 
 def download_aerials(foldername)
-  aerialdir = File.join(Dir.home, foldername) 
+  aerialdir = File.join(Dir.home, foldername)
   #=> /home/username/Aerial or C:\Users\username\Aerial depending on the platform.
 
   Dir.mkdir(aerialdir) unless Dir.exists?(aerialdir)
@@ -17,7 +17,7 @@ def download_aerials(foldername)
   parsed = JSON.parse(response)
   parsed.each do |item|
     item['assets'].each do |asset|
-      filename = asset['timeOfDay'] + '-' + asset['id']
+      filename = asset['timeOfDay'] + '-' + asset['id'] + '.mov'
       filepath = File.join(aerialdir, filename)
       if File.exists?(filepath)
         puts "File #{filename} already exists, skipping..."
