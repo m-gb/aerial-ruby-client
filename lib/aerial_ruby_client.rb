@@ -6,7 +6,7 @@ require 'open-uri'
 
 def download_aerials(foldername)
   aerialdir = File.join(Dir.home, foldername)
-  #=> /home/username/Aerial or C:\Users\username\Aerial depending on the platform.
+  #=> /home/username/foldername
 
   Dir.mkdir(aerialdir) unless Dir.exists?(aerialdir)
 
@@ -29,8 +29,6 @@ def download_aerials(foldername)
       end
     end
   end
-
+  
   puts 'Finished processing all URLs!'
 end
-
-download_aerials('Aerial')
