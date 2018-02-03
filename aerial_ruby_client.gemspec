@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.license               = "MIT"
 
   spec.files                 = ["lib/aerial_ruby_client.rb"]
+  spec.files                 = ["lib/xscreensaver_script.rb"]
 
   spec.required_ruby_version = '>= 2.4.0'
 
