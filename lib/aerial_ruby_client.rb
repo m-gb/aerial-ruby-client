@@ -3,6 +3,7 @@
 require 'httparty'
 require 'json'
 require 'open-uri'
+require 'fileutils'
 
 def download_aerials(foldername)
   aerialdir = File.join(Dir.home, foldername)
@@ -13,7 +14,7 @@ def download_aerials(foldername)
   url = 'http://a1.phobos.apple.com/us/r1000/000/Features/atv/' +
         'AutumnResources/videos/entries.json'
 
-  response = HTTParty.get(url)
+  response = HTTParty.get(url).to_s
   parsed = JSON.parse(response)
   parsed.each do |item|
     item['assets'].each do |asset|
@@ -31,4 +32,8 @@ def download_aerials(foldername)
   end
   
   puts 'Finished processing all URLs!'
+
+  # Copies the xscreensaver script to the target folder.
+  FileUtils.cp("#{__dir__}/xscreensaver_script.rb", aerialdir)
+
 end

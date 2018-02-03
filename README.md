@@ -1,8 +1,9 @@
 # AerialRubyClient
 
-This is a simple gem that downloads the Aerial Apple TV videos and saves them to a given directory.
+This is a gem that downloads the Aerial Apple TV videos and saves them to a given directory.
+The videos will be sorted by the time of day in which they were taken.
 
-These videos can then be used by Xscreensaver on GNU/Linux.
+These videos can then be used by XScreenSaver on GNU/Linux.
 
 ## Installation
 
@@ -26,15 +27,14 @@ Within irb or in a ruby application, use this method with a target folder (in th
 ```ruby
 download_aerials('Aerial')
 ```
-As a result, the gem will create a new folder in the home directory of the current user and download the videos into it.
 
-Then, add this line to .xscreensaver below the other screensavers (most start with `- GL:`):
-```
-- Best: "Apple Aerial" mpv --really-quiet --shuffle --no-audio \
-        --fs --loop=inf --no-stop-screensaver \
-        --wid=$XSCREENSAVER_WINDOW --panscan=1 \
-        $HOME/Aerial/* \n\
-```
+As a result, a new folder will be created and the videos will be downloaded into it. 
+The folder will also contain a Ruby script called `xscreensaver_script.rb`.
+
+This script should be moved into `/usr/lib/xscreensaver/` and renamed `aerial`.
+
+Finally, add the `aerial \n\` line to `~/.xscreensaver`:
+![~/.xscreensaver example](xscreensaver_example.png)
 
 Note: this gem can be reused periodically to fetch the latest videos from Apple. 
 If a video already exists in the target folder, it will be skipped.
